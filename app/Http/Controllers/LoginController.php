@@ -20,7 +20,7 @@ class LoginController extends Controller
             if (Auth::attempt($credentials)) {
                 $user = Auth::user();
                 $accessToken = $user->createToken('NombreDelToken')->accessToken;
-                return response()->json(['access_token' => $accessToken], 200);
+                return response()->json(['access_token' => $accessToken]);
             }
 
             $msg = [
@@ -29,7 +29,7 @@ class LoginController extends Controller
                 'code' => 400
             ];
             
-            return response()->json($msg, 400);
+            return response()->json($msg);
         }
 
         $msg = [
@@ -37,7 +37,7 @@ class LoginController extends Controller
             'status' => 'failed',
             'code' => 400
         ];
-        return response()->json($msg, 400);
+        return response()->json($msg);
     }
     
     protected function identify(Request $request)
